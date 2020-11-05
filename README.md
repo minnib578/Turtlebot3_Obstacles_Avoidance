@@ -1,1 +1,0 @@
-# Turtlebot3_obstacle_avoid
