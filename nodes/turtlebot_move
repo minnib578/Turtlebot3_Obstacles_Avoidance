@@ -1,1 +1,51 @@
+#!/usr/bin/env python
+import rospy
+import sys, select, os,math
+from geometry_msgs.msg import Twist
+from sensor_msgs.msg import LaserScan
+if os.name == 'nt':
+  import msvcrt
+else:
+  import tty, termios
+def callback(msg):
+    print '-------------------------------------------'
+    print 'Range data at 0 deg:   {}'.format(msg.ranges[0])
+    print 'Range data at 15 deg:  {}'.format(msg.ranges[15])
+    print 'Range data at 345 deg: {}'.format(msg.ranges[345])
+    print '-------------------------------------------'
+    thr1 = 0.8                                                                 # Laser scan range threshold
+    thr2 = 0.8
+    if msg.ranges[0]>thr1 and msg.ranges[15]>thr2 and msg.ranges[345]>thr2:    # Checks if there are obstacles in front of 15 degrees left and right
+        twist.linear.x = 0.5                                                   # go forward (linear velocity)
+        twist.angular.z = 0.0                                                  # do not rotate (angular velocity)
+    else:
+        twist.linear.x = 0.0                                                   # stop
+        twist.angular.z = 0.5                                                  # rotate counter-clockwise
+        if msg.ranges[0]>thr1 and msg.ranges[15]>thr2 and msg.ranges[345]>thr2:
+            twist.linear.x = 0.5
+            twist.angular.z = 0.0
+    pub.publish(twist)                                                         # publish the move object
+
+if __name__ == "__main__":
+    
+    if os.name != 'nt':
+        settings = termios.tcgetattr(sys.stdin)
+    rospy.loginfo("Started Program.")
+    twist = Twist()                                                            # Creates a Twist message type object
+    print '-------------------------------------------'
+    print 'velocity at x:   {}'.format(twist.linear.x)
+    print 'velocity at y:  {}'.format(twist.linear.y)
+    print 'velocity at z: {}'.format(twist.linear.z)
+    print 'angular_speed at x:   {}'.format(twist.angular.x)
+    print 'angular_speed at y:  {}'.format(twist.angular.y)
+    print 'angular_speed at z: {}'.format(twist.angular.z)
+    print '-------------------------------------------'                                                         
+    rospy.init_node('wander_bot')                                               # Initializes a node
+    pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)                     # Publisher object which will publish "Twist" type messages
+    sub = rospy.Subscriber("/scan", LaserScan, callback)                        # Subscriber object which will listen "LaserScan" type messages                                                  
+    rospy.spin()                                                                # Loops infinitely until someone stops the program execution
+    if os.name != 'nt':
+            termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+
+    
 
