@@ -1,0 +1,28 @@
+
+<package format="2">
+  <name>wander_bot</name>
+  <version>1.2.4</version>
+  <description>
+    Provides teleoperation using keyboard for TurtleBot3.
+  </description>
+  <license>BSD</license>
+
+
+  <author>Minni Bin</author>
+  <author email="minnib@clemson.edu">Minni Bin</author>
+  <author>ID:C91561335</author>
+  <maintainer email="minnib@clemson.edu">Minni Bin</maintainer>
+
+
+
+  <url type="website">http://wiki.ros.org/turtlebot3_teleop</url>
+  <url type="emanual">http://turtlebot3.robotis.com</url>
+  <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3</url>
+  <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>turtlebot3_gazebo</depend>
+</package>
