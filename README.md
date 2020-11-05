@@ -1,3 +1,24 @@
+  # A Naive Obstacle Avoidance Technique for Turtlebot 3 implemented in ROS
+The goal of this assignment is to get you started writing software that controls a (simulated) robot using ROS.
+In this assignment you will create a ROS node that will drive the robot around with a simple wanderer algorithm, much like a Roomba robot vaccum cleaner. More specifically, the robot should move forward until it reaches an obstacle, then rotate in place until the way ahead is clear, then move forward again and repeat. 
+
+## Introduction 
+This is an obstacle avoidance technique simulated with Turtlebot 3 in Gazebo, ROS. The Turtlebot uses planar laser range-finder to detect obstacles in front as well as 15 degrees left and right from the front. Then based on the obstacle range, it either goes forward with linear velocity or, stops and rotates with angular velocity until it finds an obstacle-free path to go forward again.
+
+## Pre-requisites
+- Python 2
+- ubuntu 18.04
+- Installed ROS Melodic Morenia.
+- [Turtlebot 3 simulation package](https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git)
+
+## Installation and Create packages
+if you installed catkin via apt-get for ROS melodic, excute following comand:
+$ source /opt/ros/melodic/setup.bash
+
+- Create catkin workspace
+  ```
+  $ mkdir -p ~/catkin_ws/src
+  $ cd ~/catkin_ws/
   $ catkin_make
   $ source devel/setup.bash
   ```
