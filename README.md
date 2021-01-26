@@ -1,4 +1,4 @@
-  # A Naive Obstacle Avoidance Technique for Turtlebot 3 implemented in ROS
+# A Naive Obstacle Avoidance Technique for Turtlebot 3 implemented in ROS
 The goal of this assignment is to get you started writing software that controls a (simulated) robot using ROS.
 In this assignment you will create a ROS node that will drive the robot around with a simple wanderer algorithm, much like a Roomba robot vaccum cleaner. More specifically, the robot should move forward until it reaches an obstacle, then rotate in place until the way ahead is clear, then move forward again and repeat. 
 
